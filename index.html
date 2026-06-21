@@ -331,14 +331,11 @@
     btn.disabled = true;
     btn.innerHTML = '<span class="loading"></span>Отправка...';
 
-    const from = tg ? `@${tg}` : 'Аноним';
-    const text = `📩 *Новый вопрос*\n\n👤 *От:* ${from}\n\n💬 *Вопрос:*\n${msg}`;
-
     try {
       const res = await fetch(SEND_MESSAGE_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text })
+        body: JSON.stringify({ msg, tg })
       });
       const data = await res.json();
       if (data.ok) {
