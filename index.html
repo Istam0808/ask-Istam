@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Р—Р°РґР°Р№ РІРѕРїСЂРѕСЃ Istamoov_i</title>
+<title>Задай вопрос Istamoov_i</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -268,22 +268,22 @@
 
   <hr class="divider">
 
-  <p class="tagline">Р—Р°РґР°Р№ РІРѕРїСЂРѕСЃ Istamoov_i</p>
+  <p class="tagline">Задай вопрос Istamoov_i</p>
 
-  <div id="error-msg" class="error-msg">РћС€РёР±РєР° РїСЂРё РѕС‚РїСЂР°РІРєРµ. РџРѕРїСЂРѕР±СѓР№ СЃРЅРѕРІР°.</div>
+  <div id="error-msg" class="error-msg">Ошибка при отправке. Попробуй снова.</div>
 
   <div id="form-area">
     <div class="input-wrap">
-      <span class="label">РќРёРє РІ Telegram</span>
+      <span class="label">Ник в Telegram</span>
       <div class="tg-wrap">
         <span class="tg-prefix">@</span>
-        <input type="text" id="tg" placeholder="username (РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅРѕ)" maxlength="50">
+        <input type="text" id="tg" placeholder="username (необязательно)" maxlength="50">
       </div>
     </div>
 
     <div class="input-wrap">
-      <span class="label">Р’РѕРїСЂРѕСЃ</span>
-      <textarea id="msg" placeholder="РќР°РїРёС€Рё С‡С‚Рѕ-РЅРёР±СѓРґСЊ..." maxlength="1000"></textarea>
+      <span class="label">Вопрос</span>
+      <textarea id="msg" placeholder="Напиши что-нибудь..." maxlength="1000"></textarea>
     </div>
 
     <div class="anon-badge">
@@ -291,24 +291,24 @@
         <rect x="3" y="11" width="18" height="11" rx="1"/>
         <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
       </svg>
-      РђРЅРѕРЅРёРјРЅРѕ вЂ” РЅРёРєС‚Рѕ РЅРµ СѓР·РЅР°РµС‚ РєС‚Рѕ С‚С‹, РµСЃР»Рё РЅРµ СѓРєР°Р¶РµС€СЊ РЅРёРє
+      Анонимно — никто не узнает кто ты, если не укажешь ник
     </div>
 
     <button class="btn-send" id="send-btn" onclick="handleSend()">
-      РћС‚РїСЂР°РІРёС‚СЊ
+      Отправить
     </button>
   </div>
 
   <div class="success" id="success-area">
-    <div class="success-icon">вњ“</div>
-    <p class="success-title">РћС‚РїСЂР°РІР»РµРЅРѕ</p>
-    <p class="success-sub">Istamoov_i СѓРІРёРґРёС‚ С‚РІРѕР№ РІРѕРїСЂРѕСЃ РІ Telegram</p>
+    <div class="success-icon">✓</div>
+    <p class="success-title">Отправлено</p>
+    <p class="success-sub">Istamoov_i увидит твой вопрос в Telegram</p>
     <button class="btn-send" onclick="resetForm()" style="margin-top:8px; max-width:180px;">
-      Р•С‰С‘ РІРѕРїСЂРѕСЃ
+      Ещё вопрос
     </button>
   </div>
 
-  <div class="footer">Anonymous Q&amp;A В· istamoov_i</div>
+  <div class="footer">Anonymous Q&amp;A · istamoov_i</div>
 </div>
 
 <script>
@@ -329,7 +329,7 @@
     document.getElementById('msg').style.borderColor = '';
     errDiv.style.display = 'none';
     btn.disabled = true;
-    btn.innerHTML = '<span class="loading"></span>РћС‚РїСЂР°РІРєР°...';
+    btn.innerHTML = '<span class="loading"></span>Отправка...';
 
     try {
       const res = await fetch(SEND_MESSAGE_ENDPOINT, {
@@ -345,7 +345,7 @@
     } catch {
       errDiv.style.display = 'block';
       btn.disabled = false;
-      btn.innerHTML = 'РћС‚РїСЂР°РІРёС‚СЊ';
+      btn.innerHTML = 'Отправить';
     }
   }
 
@@ -357,7 +357,7 @@
     document.getElementById('form-area').style.display = 'block';
     document.getElementById('success-area').style.display = 'none';
     document.getElementById('send-btn').disabled = false;
-    document.getElementById('send-btn').innerHTML = 'РћС‚РїСЂР°РІРёС‚СЊ';
+    document.getElementById('send-btn').innerHTML = 'Отправить';
   }
 
   document.getElementById('msg').addEventListener('keydown', e => {
